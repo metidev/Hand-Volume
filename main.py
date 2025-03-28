@@ -31,7 +31,7 @@ VOLUME_LOCK_DURATION = 3
 is_volume_locked = False
 lock_start_time = 0
 base_ratio = None
-last_vol_percent = 50  # ذخیره آخرین مقدار صدا
+last_vol_percent = 50 
 
 def calculate_hand_ratio(landmarks, image_shape):
     wrist = landmarks.landmark[mp_hands.HandLandmark.WRIST]
@@ -115,20 +115,16 @@ while cap.isOpened():
             else:
                 current_vol_percent = update_volume(current_ratio)
 
-    # نمایش رابط کاربری
     if hand_detected:
         display_vol = last_vol_percent if is_volume_locked else current_vol_percent
         
-        # نوار حجم
         cv2.rectangle(image, (50, 150), (85, 350), (0, 255, 0), 2)
         vol_height = int(200 * (display_vol/100))
         cv2.rectangle(image, (50, 350 - vol_height), (85, 350), (0, 255, 0), -1)
         
-        # نمایش درصد
         cv2.putText(image, f"{int(display_vol)}%", (40, 380), 
                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
         
-        # نمایش وضعیت قفل
         if is_volume_locked:
             remaining = int(VOLUME_LOCK_DURATION - (time.time() - lock_start_time))
             cv2.putText(image, f"LOCKED ({remaining}s)", (50, 50), 
