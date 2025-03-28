@@ -29,7 +29,7 @@ Usage 🚀
 ```
 python main.py
 ```
-✊ Control Volume: Move thumb and index finger closer/farther
+🤏 Control Volume: Move thumb and index finger closer/farther
 
 🖐️ Lock Volume: Show open palm (all fingers visible)
 
